@@ -13,9 +13,9 @@ body {
   font-size: 14px;
 }
 
-a { color: #ff8e43; }
+a { color: #237694; }
 
-a:hover { color: #ff7d27; }
+a:hover { color: #235f94; }
 
 /*----------
   NAV
@@ -62,7 +62,7 @@ a:hover { color: #ff7d27; }
   width: 16px;
   height: 16px;
   background: transparent;
-  border: 2px solid #da5700;
+  border: 2px solid #235f94;
   border-radius: 10px;
 }
 .nav>li {
@@ -70,7 +70,7 @@ a:hover { color: #ff7d27; }
   display: block;
 }
 .fixed-side-navbar .nav > li a {
-  color: #ff7d27;
+  color: #235f94;
   min-height: 32px;
   background: transparent;
   padding: 5px 45px 5px 25px;
@@ -104,7 +104,7 @@ a:hover { color: #ff7d27; }
   border-right: 0;
 }
 .fixed-side-navbar .nav > li a:hover > span {
-  color: #da5700;
+  color: #239094;
   display: block;
 }
 
@@ -116,7 +116,7 @@ a:hover { color: #ff7d27; }
 
 .primary-button a {
   display: inline-block;
-  background-color: #ff7d27;
+  background-color: #235f94;
   padding: 15px 24px;
   border-radius: 3px;
   text-transform: uppercase;
@@ -151,7 +151,7 @@ a:hover { color: #ff7d27; }
 .or {
   margin-bottom: 30px;
   font-size: 128px;
-  color: #ff7d27;
+  color: #235f94;
   font-weight: 600;
   font-style: normal;
   text-transform: uppercase;
@@ -160,7 +160,7 @@ a:hover { color: #ff7d27; }
 
 .baner-content h1 {
   margin-top: 0px;
-  font-size: 128px;
+  font-size: 100px;
   color: #fff;
   font-weight: 900;
   text-transform: uppercase;
@@ -168,7 +168,7 @@ a:hover { color: #ff7d27; }
 }
 
 .baner-content em {
-  color: #ff7d27;
+  color: #235f94;
   font-weight: 600;
   font-style: normal;
 }
@@ -215,7 +215,7 @@ a:hover { color: #ff7d27; }
 
 .line-dec {
   height: 3px;
-  background-color: #ff7d27;
+  background-color: #235f94;
   margin: 40% 0 40% 0;
   padding: 0;
 }
@@ -233,13 +233,13 @@ h4, .h4 {
 .service-content .left-text .line-dec {
   width: 45px;
   height: 3px;
-  background-color: #ff7d27;
+  background-color: #235f94;
   margin: 20px 0 20px 0;
 }
 .service-content .line-dec {
   width: 45px;
   height: 3px;
-  background-color: #ff7d27;
+  background-color: #235f94;
   margin: 20px 0 20px 0;
 }
 .service-content .left-text p {
@@ -273,7 +273,7 @@ h4, .h4 {
 .service-content .service-item .line-dec {
   width: 45px;
   height: 3px;
-  background-color: #ff7d27;
+  background-color: #235f94;
   margin: 20px auto 15px auto;
 }
 
@@ -285,7 +285,7 @@ h4, .h4 {
 
 /* Set the color of the scrollbar thumb */
 ::-webkit-scrollbar-thumb {
-  background-color: #ff8e43;
+  background-color: #237694;
   border-radius: 6px;
 }
 
@@ -320,7 +320,7 @@ h4, .h4 {
   font-style: normal;
   font-size: 17px;
   font-weight: 700;
-  color: #ff7d27;
+  color: #235f94;
 }
 
 .owl-pagination {
@@ -388,11 +388,11 @@ section {
 }
 
 .tabs a:hover {
-  color: #ff7d27;
+  color: #235f94;
 }
 
 .tabs .active {
-  border:4px solid #ff7d27;
+  border:4px solid #235f94;
 }
 
 .tabgroup div  {
@@ -458,7 +458,7 @@ section {
 
 #contact button {
   display: inline-block;
-  background-color: #ff7d27;
+  background-color: #235f94;
   padding: 15px 24px;
   width: 100%;
   border-radius: 3px;
@@ -506,7 +506,7 @@ footer ul li a {
   line-height: 40px;
   text-align: center;
   display: inline-block;
-  background-color: #ff7d27;
+  background-color: #235f94;
   color: #282b2f;
   border-radius: 50%;
   text-decoration: none;
@@ -516,7 +516,7 @@ footer ul li a {
 
 footer ul li a:hover {
   color: #282b2f;
-  background-color: #ff8e43;
+  background-color: #237694;
 }
 
 footer p {
@@ -529,7 +529,7 @@ footer p {
 }
 
 footer em {
-  color: #ff8e43;
+  color: #237694;
   font-weight: 600;
   font-style: normal;
 }
@@ -563,7 +563,7 @@ footer em {
   .service-content .left-text .line-dec {
     width: 45px;
     height: 3px;
-    background-color: #ff7d27;
+    background-color: #235f94;
     margin: 20px auto 20px auto;
   }
 
