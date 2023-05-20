@@ -138,8 +138,8 @@ a:hover { color: #235f94; }
 .baner-content {
   padding-top: 25vh;
   text-align: center;
-  /*background-image: url(../img/1st-section.jpg);*/
-  background-image: url("https://media.wired.com/photos/59779389af0762717234af66/master/w_1920,c_limit/Wildfire-TopArt-528693356.jpg");
+  background-image: url(../img/TW_2_1270-2.jpg);
+  /* background-image: url("https://media.wired.com/photos/59779389af0762717234af66/master/w_1920,c_limit/Wildfire-TopArt-528693356.jpg"); */
 }
 
 .first-content {
