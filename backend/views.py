@@ -3,13 +3,18 @@ from django.http import JsonResponse
 from qiskit import QuantumCircuit, ClassicalRegister, QuantumRegister, execute, BasicAer
 from qiskit.tools.visualization import plot_histogram
 import numpy as np
-from models import QuantumModel
+from .models import QuantumModel
+
+alice = None  # Reference to the quantum computing model
+bob = None
+alice_key = None
+alice_table = None
+
+n = 16
 
 # Quantum circuit for Alice state
-qr = QuantumRegister(16, name='qr')
-cr = ClassicalRegister(16, name='cr')
 
-def SendState(qc1, qc2):
+def SendState(qc1, qc2, qr, cr):
     ''' This function takes the output of a circuit qc1 (made up only of x and
         h gates and initializes another circuit qc2 with the same state
     '''
@@ -33,7 +38,10 @@ def SendState(qc1, qc2):
 
 
 def encrypt(request):
-    n=16
+    global alice, alice_key, alice_table, bob
+
+    qr = QuantumRegister(n, name='qr')
+    cr = ClassicalRegister(n, name='cr')
 
     # Quantum circuit for alice state
     alice = QuantumCircuit(qr, cr, name='Alice')
@@ -65,49 +73,100 @@ def encrypt(request):
     # it is not a good idea to put them in a func
     # circuits = list(qp.get_circuit_names())
 
-    qm = QuantumModel()
-    qm.alice = alice
-    qm.bob = QuantumCircuit(qr, cr, name='Bob')
-    qm.save()
+    # print(type(alice))
+    # print(type(alice_key))
+    # print(type(alice_table))
+    # print(type(bob))
 
-    SendState(qm.alice, qm.bob)
+    bob = QuantumCircuit(qr, cr, name='Bob')
+
+    SendState(alice, bob, qr, cr)
+
+    qm = QuantumModel()
+    qm.set_alice_circuit(alice)
+    qm.set_bob_circuit(bob)
+    qm.set_alice_key(alice_key)
+    qm.alice_table = alice_table
+    qm.save()
 
     return JsonResponse({'key': str(qm.key)})
 def decrypt(request, hex_code):
+    qr = QuantumRegister(n, name='qr')
+    cr = ClassicalRegister(n, name='cr')
     try:
         # Retrieve the QuantumModel object based on the hex_code
         qm = QuantumModel.objects.get(key=hex_code)
+        # print(qm.bob)
+        # print(QuantumCircuit.from_qasm_str(qm.bob))
     except QuantumModel.DoesNotExist:
         return JsonResponse({'success': False, 'error': 'Invalid hex code'})
 
-    alice_key = request.data['alice_key']
-    alice_table = request.data['alice_table']
-    bob_table = request.data['bob_table']
-    histogram = request.data['histogram']
+    # alice = qm.get_alice_circuit()
+    bob = qm.get_bob_circuit()
+    alice_key = qm.get_alice_key()
+    alice_table = qm.alice_table
+
+    # print(bob)
+    print(alice_key)
+    print(alice_table)
+
+    # Bob doesn't know which basis to use
+    bob_table = []
+    for index in range(len(qr)):
+        if 0.5 < np.random.random():  # With 50% chance...
+            bob.h(qr[index])  # ...change to diagonal basis
+            bob_table.append('X')
+        else:
+            bob_table.append('Z')
+
+    # Measure all qubits
+    for index in range(len(qr)):
+        bob.measure(qr[index], cr[index])
+
+    # Execute the quantum circuit
+    backend = BasicAer.get_backend('qasm_simulator')
+    result = execute(bob, backend=backend, shots=1).result()
+    plot_histogram(result.get_counts(bob))
+
+    # Result of the measure is Bob's key candidate
+    bob_key = list(result.get_counts(bob))[0]
+    bob_key = bob_key[::-1]  # key is reversed so that first qubit is the first element of the list
+
+    print(alice_key)
+    print(bob_key)
 
     keep = []
     discard = []
-
     for qubit, basis in enumerate(zip(alice_table, bob_table)):
         if basis[0] == basis[1]:
+            print("Same choice for qubit: {}, basis: {}".format(qubit, basis[0]))
             keep.append(qubit)
         else:
+            print("Different choice for qubit: {}, Alice has {}, Bob has {}".format(qubit, basis[0], basis[1]))
             discard.append(qubit)
 
-    acc = 0
-    for bit in zip(alice_key, histogram):
-        if bit[0] == bit[1]:
-            acc += 1
+    print(type(alice_key))
+    print(type(bob_key))
 
     new_alice_key = [alice_key[qubit] for qubit in keep]
-    new_bob_key = [list(histogram)[0][qubit] for qubit in keep]
+    new_bob_key = [bob_key[qubit] for qubit in keep]
 
     acc = 0
     for bit in zip(new_alice_key, new_bob_key):
         if bit[0] == bit[1]:
             acc += 1
 
-    similarity_percentage = acc / len(new_alice_key)
-    is_success = acc == len(new_alice_key)
+    print('Percentage of qubits to be discarded according to table comparison: ', len(keep) / n)
+    print('Measurement convergence by additional chance: ', acc / n)
 
-    return JsonResponse({'new_alice_key': new_alice_key, 'new_bob_key': new_bob_key, 'similarity_percentage': similarity_percentage, 'is_success': is_success})
+    new_alice_key = [alice_key[qubit] for qubit in keep]
+    new_bob_key = [bob_key[qubit] for qubit in keep]
+
+    acc = 0
+    for bit in zip(new_alice_key, new_bob_key):
+        if bit[0] == bit[1]:
+            acc += 1
+
+    print('Percentage of similarity between the keys: ', acc / len(new_alice_key))
+
+    return JsonResponse({'new_alice_key': new_alice_key, 'new_bob_key': new_bob_key, 'success': acc / len(new_alice_key) > 0.9})

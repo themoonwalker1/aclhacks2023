@@ -16,11 +16,14 @@ cr = ClassicalRegister(n, name='cr')
 alice = QuantumCircuit(qr, cr, name='Alice')
 
 # Generate a random number in the range of available qubits [0,65536))
-alice_key = np.random.randint(0, high=2 ** n)
+alice_key = 1000
+
+print(alice_key)
 
 # Cast key to binary for encoding
 # range: key[0]-key[15] with key[15] least significant figure
 alice_key = np.binary_repr(alice_key, n)  # n is the width
+print(alice_key)
 
 # Encode key as alice qubits
 # IBM's qubits are all set to |0> initially
