@@ -1,0 +1,381 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<!--    <title>Vanilla Bootstrap v4.2.1 Theme</title>-->
+    <meta name="description" content="">
+    <link rel="icon" type="image/png" href="{% static 'img/favico.ico' %}"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/fontAwesome.css' %}">
+    <link rel="stylesheet" href="{% static 'css/hero-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'css/templatemo-main.css' %}">
+    <link rel="stylesheet" href="{% static 'css/owl-carousel.css' %}">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,800" rel="stylesheet">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous">
+
+    <!-- <script src="{% static 'js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script> -->
+    <title>Fire Sentry - Wildfire Prediction</title>
+</head>
+<body>
+<div class="fixed-side-navbar">
+        <ul class="nav flex-column">
+            <li class="nav-item"><a class="nav-link" href="#home"><span>Intro</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#model"><span>The Encryption Process</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#predict"><span>Encryption Use Case Sample</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#data"><span>Data</span></a></li>
+            <li class="nav-item"><a class="nav-link" href="#wildfires"><span>Potential Use Cases</span></a></li>
+        </ul>
+    </div>
+
+<div class="parallax-content baner-content" id="home">
+        <div class="container">
+            <div class="first-content">
+                <h1>Fire Sentry</h1>
+                <span class="auto-type"></span>
+                <div class="primary-button">
+                    <a href="#model">Learn More</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12"></script>
+    <script>
+        var typed = new Typed(".auto-type", {
+            strings: ["", "A <em>Quantum</em> Encryption System"],
+            typeSpeed: 40,
+            backSpeed: 40,
+            loop: false,
+            onComplete: function() {
+                //bold the word Wildfire
+                // setTimeout(function() {
+                //     document.querySelector(".auto-type").innerHTML = document.querySelector(".auto-type").innerHTML.replace("Wildfire", "<em>Wildfire</em>");
+                // }, 100);
+                // console.log("Typing animation complete");
+            }
+        });
+    </script>
+
+
+    <div class="service-content" id="model">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="left-text">
+                        <h4><b>How its Done</b></h4>
+                        <div class="line-dec"></div>
+                        <p>Using Multi Layer Perceptron (MLP) and Random Tree Classifier machine learning models, we were able to predict the
+                        occurrence of wildfires across the United States. Find the data used for training and testing <b><a target="_blank" href="https://github.com/ouladsayadyounes/WildFires">here</a>!</b></p>
+                        <ul>
+                            <li>-  Approximately ~90% accuracy</li>
+                            <li>-  Low request latency</li>
+                            <li>-  Very low False Negative rate</li>
+                            <li>-  Integrated map feature Coming Soon!</li>
+                        </ul>
+                        <div class="primary-button">
+                            <a href="#predict">Go to Encyptor</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="service-item">
+                                <h4>Approximately</h4>
+                                <div class="line-dec"></div>
+                                <br>
+                                <b><p class = "number-counter" style="font-size:70px;">70,000</p></b>
+                                <br>
+                                <div class="line-dec"></div>
+                                <h4>Wildfires Per Year</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="service-item">
+                                <h4>Over</h4>
+                                <div class="line-dec"></div>
+                                <br>
+                                <b><p style="font-size:50px;">8 Million</p></b>
+                                <br>
+                                <div class="line-dec"></div>
+                                <h4>Acres Burned Annually</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="service-item">
+                                <h4>Wildfires Totalled</h4>
+                                <div class="line-dec"></div>
+                                <br>
+                                <b><p style="font-size:70px;">$11.2</p></b>
+                                <br>
+                                <div class="line-dec"></div>
+                                <h4>Billion Of Loss in 2022</h4>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="service-item">
+                                <h4>Humans Cause</h4>
+                                <div class="line-dec"></div>
+                                <br>
+                                <b><p style="font-size:70px;">85%</p></b>
+                                <br>
+                                <div class="line-dec"></div>
+                                <h4>Of All Wildfires</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="parallax-content contact-content" id="predict">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="contact-form">
+                        <div class="row">
+                            <form id="contact" action="" method="post">
+                                <div class="row">
+                                    <div class="thingmabob">
+                                        <h4><b>Predict Wildfires At Any US Location!</b></h4>
+                                    </div>
+                                    <div class="col-md-12" style="padding-bottom: 5px">
+                                      <fieldset style="padding-bottom: 5px">
+                                        {% csrf_token %}
+<!--                                        <label for="autocomplete">Enter your address:</label>-->
+                                        <input id="autocomplete" class="form-control" type="text" placeholder="Enter your address:" onchange="setthing()"/>
+                                      </fieldset>
+                                    </div>
+                                    <div class="col-md-12 or" style="padding-bottom: 5px">
+                                      <fieldset style="padding-bottom: 5px">
+                                        <h1><b>OR</b></h1>
+                                      </fieldset>
+                                    </div>
+                                    <div class="col-md-12">
+                                      <fieldset>
+<!--                                        <label for="Latitude">Latitude:</label>-->
+                                        <input id="Latitude" class="form-control" type="text" placeholder="Latitude:" onchange="setthing()"/>
+<!--                                        <label for="Longitude">Longitude:</label>-->
+                                        <input id="Longitude" class="form-control" type="text" placeholder="Longitude:" onchange="setthing()"/>
+                                      </fieldset>
+                                    </div>
+                                    <div class="col-md-12">
+                                      <fieldset>
+                                        <button class="btn btn-primary" type="button" onclick="find()" id="but">Predict Now</button>
+                                      </fieldset>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="map" >
+                    <div class="thingmabob">
+                        <h4><b id="predicty" style="color: #ff7d27">Result Appears Here</b></h4>
+                    </div>
+                    <!-- How to change your own map point
+                           1. Go to Google Maps
+                           2. Click on your location point
+                           3. Click "Share" and choose "Embed map" tab
+                           4. Copy only URL and paste it within the src="" field below
+                    -->
+
+                        <img id="image" src="https://maps.googleapis.com/maps/api/staticmap?center=37.09024,-95.712891&zoom=4&size=640x467&maptype=satellite&key=API_KEY_HERE" height="382px">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="tabs-content" id="data">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8 mx-auto">
+                    <div class="wrapper">
+                    <section id="first-tab-group" class="tabgroup">
+                      <div id="tab1">
+                          <p><img src="{% static 'img/ndvi.png' %}" alt="" style="opacity: .75;" height="250px"><br>
+                          It can be seen that the NDVI values for training range from 0 to 1 and are normalized. This normalization enables fair comparison between different datasets and prevents the influence of extreme values, simplifying the training process by making the input data consistent and easier to work with.
+                          </p>
+                      </div>
+                      <div id="tab2">
+                          <p><img src="{% static 'img/lst.png' %}" alt=""  style="opacity: .75;" height="250px"><br>LST stands for Land Surface Temperature. Our LST values for training range from 12000 to 16000 and are normalized, which means that the data is standardized to a common scale, making it easier for machine learning models to learn from and make accurate wildfire predictions.</p>
+                      </div>
+                      <div id="tab3">
+                          <p><img src="{% static 'img/ta.png' %}" alt=""  style="opacity: .75;" height="250px"><br>Our Thermal Anomaly (TA) values for training range from 3 to 5 and are right skewed, likely due to the fact that most areas do not have thermal anomalies, and this distribution may affect the performance of our model by overemphasizing the importance of areas with thermal anomalies and underemphasizing areas without them. Proper handling of this skewness is necessary for a balanced and accurate wildfire prediction model.</p>
+                      </div>
+                      <div id="tab4">
+                          <p><img src="{% static 'img/model_accuracy.png' %}" alt=""  style="opacity: .75;" height="250px"><br>Based on the graph above, it is apparent that the random forest classification model achieves the highest accuracy with 90% training data. Therefore, we can conclude that using 90% of the available training data is the best option for this model.</p>
+                      </div>
+                    </section>
+                    <ul class="tabs clearfix" data-tabgroup="first-tab-group">
+                      <li><a href="#tab1" class="active">NDVI</a></li>
+                      <li><a href="#tab2">LST</a></li>
+                      <li><a href="#tab3">TA</a></li>
+                      <li><a href="#tab4">Model Accuracy</a></li>
+                    </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="parallax-content projects-content" id="wildfires">
+        <div class="container">
+            <h1 style="color: #da5700; text-align: center; padding:10px; background-color: rgba(0, 0, 0, 0.25); border-radius: 15px;"><b>Potential Industries</b></h1>
+            <div class="row">
+                <div class="col-md-12">
+                    <div id="owl-testimonials" class="owl-carousel owl-theme">
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/1st-big-item.jpg" data-lightbox="image-1"></a>
+                                <div class="text-content">
+                                    <h4 style="color: #ff7d27">United States Defense</h4>
+                                    <br>
+                                    <p><span style="color: black"><b>Market Cap:</b> $743.62 billion </span></p>
+                                    <p><span style="color: black"><b>Total Revenue:</b> $389.51 billion</span></p>
+                                    <p><span style="color: green"><b>Compound Annual Growth Rate:</b> 2.37%</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/2nd-big-item.jpg" data-lightbox="image-1"></a>
+                                <div class="text-content">
+                                    <h4 style="color: #ff7d27">Cloud Computing and Data Centers</h4>
+                                    <br>
+                                    <p><span style="color: black"><b>Market Cap:</b> $50 billion</span></p>
+                                    <p><span style="color: black"><b>Total Revenue:</b> $23.7 billion</span></p>
+                                    <p><span style="color: green"><b>Compound Annual Growth Rate:</b> 12%</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/3rd-big-item.jpg" data-lightbox="image-1"></a>
+                                <div class="text-content">
+                                    <h4 style="color: #ff7d27">United States Banking and Finance Industry</h4>
+                                    <br>
+                                    <p><span style="color: black"><b>Market Cap:</b> $3.59 trillion</span></p>
+                                    <p><span style="color: black"><b>Total Revenue:</b> $496.2 billion</span></p>
+                                    <p><span style="color: green"><b>Compound Annual Growth Rate:</b> 5.9%</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/4th-big-item.jpg" data-lightbox="image-1"></a>
+                                <div class="text-content">
+                                    <h4 style="color: #ff7d27">Healthcare</h4>
+                                    <br>
+                                    <p><span style="color: black"><b>Market Cap:</b> $808 billion</span></p>
+                                    <p><span style="color: black"><b>Total Revenue:</b> $603.2 billion</span></p>
+                                    <p><span style="color: green"><b>Compound Annual Growth Rate:</b> 10.95%</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/5th-big-item.jpg" data-lightbox="image-1"></a>
+                                <div class="text-content">
+                                    <h4 style="color: #ff7d27">Mosquito Fire, California</h4>
+                                    <br>
+                                    <p><span style="color: black"><b>Market Cap:</b> $3.59 trillion</span></p>
+                                    <p><span style="color: black"><b>Total Revenue:</b> $496.2 billion</span></p>
+                                    <p><span style="color: green"><b>Compound Annual Growth Rate:</b> 5.9%</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/6th-big-item.jpg" data-lightbox="image-1"></a>
+                                <div class="text-content">
+                                    <h4 style="color: #ff7d27">Fort Lyon Fire, Colorado</h4>
+                                    <br>
+                                    <p><span style="color: black"><b>Market Cap:</b> $3.59 trillion</span></p>
+                                    <p><span style="color: black"><b>Total Revenue:</b> $496.2 billion</span></p>
+                                    <p><span style="color: green"><b>Compound Annual Growth Rate:</b> 5.9%</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/2nd-big-item.jpg" data-lightbox="image-1"></a>
+                                <div class="text-content">
+                                    <h4 style="color: #ff7d27">Thorn Springs Fire, Idaho</h4>
+                                    <br>
+                                    <p><span style="color: black"><b>Market Cap:</b> $3.59 trillion</span></p>
+                                    <p><span style="color: black"><b>Total Revenue:</b> $496.2 billion</span></p>
+                                    <p><span style="color: green"><b>Compound Annual Growth Rate:</b> 5.9%</span></p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="item">
+                            <div class="testimonials-item">
+                                <a href="img/1st-big-item.jpg" data-lightbox="image-1"></a>
+                                <div class="text-content">
+                                    <h4 style="color: #ff7d27">Peshtigo Fire, Wisconsin</h4>
+                                    <br>
+                                    <p><span style="color: black"><b>Market Cap:</b> $3.59 trillion</span></p>
+                                    <p><span style="color: black"><b>Total Revenue:</b> $496.2 billion</span></p>
+                                    <p><span style="color: green"><b>Compound Annual Growth Rate:</b> 5.9%</span></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="{% static "js/vendor/jquery-1.11.2.min.js" %}"><\/script>')</script>
+    <script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/plugins.js' %}"></script>
+    <script src="{% static 'js/main.js' %}"></script>
+    <script>
+        function openCity(cityName) {
+            var i;
+            var x = document.getElementsByClassName("city");
+            for (i = 0; i < x.length; i++) {
+               x[i].style.display = "none";
+            }
+            document.getElementById(cityName).style.display = "block";
+        }
+    </script>
+
+    <script>
+        $(document).ready(function(){
+          // Add smooth scrolling to all links
+          $(".fixed-side-navbar a, .primary-button a").on('click', function(event) {
+
+            // Make sure this.hash has a value before overriding default behavior
+            if (this.hash !== "") {
+              // Prevent default anchor click behavior
+              event.preventDefault();
+
+              // Store hash
+              var hash = this.hash;
+
+              // Using jQuery's animate() method to add smooth page scroll
+              // The optional number (800) specifies the number of milliseconds it takes to scroll to the specified area
+              $('html, body').animate({
+                scrollTop: $(hash).offset().top
+              }, 800, function(){
+
+                // Add hash (#) to URL when done scrolling (default click behavior)
+                window.location.hash = hash;
+              });
+            } // End if
+          });
+        });
+    </script>
+
+</body>
+</html>

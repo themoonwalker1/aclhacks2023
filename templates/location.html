@@ -1,0 +1,36 @@
+{% extends "template.html" %}
+{% load static %}
+{% block css %}
+    {% endblock %}
+
+{% block body %}
+    <div class="container mt-5">
+        <h1 class="text-center mb-5">PLACEHOLDER</h1>
+        <div class="form-group">
+            {% csrf_token %}
+            <label for="autocomplete">Enter your address:</label>
+            <input id="autocomplete" class="form-control" type="text" />
+        </div>
+        <button class="btn btn-primary" onclick="getInputValue()">Get input Value</button>
+
+        <h2 class= "cointainer mt-5"> OR </h2>
+        <br>
+
+        <div class="form-group">
+            <label for="Latitude">Latitude:</label>
+            <input id="Latitude" class="form-control" type="text" />
+            <label for="Longitude">Longitude:</label>
+            <input id="Longitude" class="form-control" type="text" />
+        </div>
+        <button class="btn btn-primary" onclick="getCoordinates()">Get input Value</button>
+<!--        <h2 class= "cointainer mt-5"> Result </h2>-->
+        <p id="result"></p>
+        <img id="image">
+    </div>
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv65Fd_RQnwhQuzKAS30JF6DXASmJOuag&libraries=places"></script>
+<!--    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv65Fd_RQnwhQuzKAS30JF6DXASmJOuag&callback=initMap"></script>-->
+<script src="https://earthengine.google.com/client/api.js"></script>
+
+<script src="{% static 'js/prediction.js' %}"></script>
+{% endblock %}
