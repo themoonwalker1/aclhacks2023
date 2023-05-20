@@ -40,6 +40,11 @@ def SendState(qc1, qc2, qr, cr):
 def encrypt(request):
     global alice, alice_key, alice_table, bob
 
+    try:
+        message = request.GET['message']
+    except Exception:
+        return JsonResponse({'success': False, 'error': 'No message'})
+
     qr = QuantumRegister(n, name='qr')
     cr = ClassicalRegister(n, name='cr')
 
@@ -87,6 +92,7 @@ def encrypt(request):
     qm.set_bob_circuit(bob)
     qm.set_alice_key(alice_key)
     qm.alice_table = alice_table
+    qm.message = message
     qm.save()
 
     return JsonResponse({'key': str(qm.key)})
@@ -169,4 +175,45 @@ def decrypt(request, hex_code):
 
     print('Percentage of similarity between the keys: ', acc / len(new_alice_key))
 
-    return JsonResponse({'new_alice_key': new_alice_key, 'new_bob_key': new_bob_key, 'success': acc / len(new_alice_key) > 0.9})
+    ak = "".join(new_alice_key)
+    rem = 8 - (len(ak) % 8)
+    ak = "".join(["1" for _ in range(rem)] + [ak])
+
+    bk = "".join(new_alice_key)
+    rem = 8 - (len(bk) % 8)
+    bk = "".join(["1" for _ in range(rem)] + [bk])
+
+    print(ak)
+    print(bk)
+    return JsonResponse({'alice_message_encrypted': encrypt_string(qm.message, ak), 'new_bob_key': new_bob_key, 'success': acc / len(new_alice_key) > 0.9 }) #, "test": decrypt_string(encrypt_string(qm.message, bk), bk)})
+
+def encrypt_string(string, key):
+    # Convert the string to binary format
+    string_bin = ''.join(format(ord(c), '08b') for c in string)
+
+    # Repeat or pad the key to match the length of the string binary
+    key_bin = (key * (len(string_bin) // len(key))) + key[:len(string_bin) % len(key)]
+
+    # Perform bitwise XOR between the string binary and key
+    encrypted_bin = ''.join(str(int(a) ^ int(b)) for a, b in zip(string_bin, key_bin))
+
+    # Convert the encrypted binary back to string format
+    encrypted_string = ''.join(chr(int(encrypted_bin[i:i+8], 2)) for i in range(0, len(encrypted_bin), 8))
+
+    return encrypted_string
+
+
+def decrypt_string(encrypted_string, key):
+    # Convert the encrypted string to binary format
+    encrypted_bin = ''.join(format(ord(c), '08b') for c in encrypted_string)
+
+    # Repeat or pad the key to match the length of the encrypted binary
+    key_bin = (key * (len(encrypted_bin) // len(key))) + key[:len(encrypted_bin) % len(key)]
+
+    # Perform bitwise XOR between the encrypted string and key
+    decrypted_bin = ''.join(str(int(a) ^ int(b)) for a, b in zip(encrypted_bin, key_bin))
+
+    # Convert the decrypted binary back to string format
+    decrypted_string = ''.join(chr(int(decrypted_bin[i:i+8], 2)) for i in range(0, len(decrypted_bin), 8))
+
+    return decrypted_string

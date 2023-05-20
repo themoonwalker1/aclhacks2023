@@ -9,6 +9,7 @@ class QuantumModel(models.Model):
     bob = models.CharField(max_length=2**16, null=True)
     alice_key = models.JSONField(null=True)
     alice_table = models.JSONField(null=True)
+    message = models.CharField(max_length=2**16, null=True)
 
     def save(self, *args, **kwargs):
         # Generate a secure and random hex key
