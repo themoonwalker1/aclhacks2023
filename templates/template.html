@@ -56,7 +56,8 @@
             },
             onComplete: function() {
                 // $('.typed-cursor').hide();
-                setInterval(changeAndRevertWord, 4000);
+                setInterval(changeAndRevertWord, 2000);
+                setInterval(changeAndRevertWord, 3500);
             }
         });
         function nothing(){
@@ -79,7 +80,7 @@
           const element = document.evaluate(xpathExpression, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 
           if (element) {
-              const originalWord = element.innerHTML;
+              const originalWord = "Quantum";
 
               // Generate random string of length 7
               const randomString = getRandomString(7);
