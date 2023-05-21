@@ -132,7 +132,7 @@ def decrypt(request, hex_code):
     # Execute the quantum circuit
     backend = BasicAer.get_backend('qasm_simulator')
     result = execute(bob, backend=backend, shots=1).result()
-    plot_histogram(result.get_counts(bob))
+    # plot_histogram(result.get_counts(bob))
 
     # Result of the measure is Bob's key candidate
     bob_key = list(result.get_counts(bob))[0]
@@ -187,6 +187,8 @@ def decrypt(request, hex_code):
     print(bk)
     return JsonResponse({'alice_message_encrypted': encrypt_string(qm.message, ak), 'new_bob_key': new_bob_key, 'success': acc / len(new_alice_key) > 0.9 , "test": decrypt_string(encrypt_string(qm.message, bk), bk), "similarity" : acc / len(new_alice_key), "discarded" : len(keep) / n })
 
+import base64
+
 def encrypt_string(string, key):
     # Convert the string to binary format
     string_bin = ''.join(format(ord(c), '08b') for c in string)
@@ -197,23 +199,33 @@ def encrypt_string(string, key):
     # Perform bitwise XOR between the string binary and key
     encrypted_bin = ''.join(str(int(a) ^ int(b)) for a, b in zip(string_bin, key_bin))
 
-    # Convert the encrypted binary back to string format
-    encrypted_string = ''.join(chr(int(encrypted_bin[i:i+8], 2)) for i in range(0, len(encrypted_bin), 8))
+    # Convert the encrypted binary to bytes
+    encrypted_bytes = int(encrypted_bin, 2).to_bytes((len(encrypted_bin) + 7) // 8, byteorder='big')
+
+    # Encode the encrypted bytes using Base64
+    encrypted_string = base64.b64encode(encrypted_bytes).decode('utf-8')
 
     return encrypted_string
 
+import base64
 
 def decrypt_string(encrypted_string, key):
-    # Convert the encrypted string to binary format
-    encrypted_bin = ''.join(format(ord(c), '08b') for c in encrypted_string)
+    # Decode the encrypted string from Base64
+    encrypted_bytes = base64.b64decode(encrypted_string.encode('utf-8'))
+
+    # Convert the encrypted bytes to binary format
+    encrypted_bin = ''.join(format(byte, '08b') for byte in encrypted_bytes)
 
     # Repeat or pad the key to match the length of the encrypted binary
     key_bin = (key * (len(encrypted_bin) // len(key))) + key[:len(encrypted_bin) % len(key)]
 
-    # Perform bitwise XOR between the encrypted string and key
+    # Perform bitwise XOR between the encrypted binary and key
     decrypted_bin = ''.join(str(int(a) ^ int(b)) for a, b in zip(encrypted_bin, key_bin))
 
     # Convert the decrypted binary back to string format
     decrypted_string = ''.join(chr(int(decrypted_bin[i:i+8], 2)) for i in range(0, len(decrypted_bin), 8))
 
     return decrypted_string
+
+
+

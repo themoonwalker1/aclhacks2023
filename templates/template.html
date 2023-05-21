@@ -217,9 +217,18 @@
                 </div>
                 <div class="col-md-6">
                     <div class="map" >
-                    <div class="thingmabob">
-                        <h4><b id="predicty" style="color: whitesmoke">Result Appears Here</b></h4>
-                    </div>
+                        <div class="thingmabob" style="padding-top: 19%; padding-bottom: 20%;">
+                            <h4><b id="predicty" style="color: whitesmoke; ">Result Appears Here</b></h4>
+                                <br>
+                            <h4 id="ori">Original Message: </h4>
+                            <br>
+                            <h4 id="enc">Message Encrypted: </h4>
+                            <br>
+                            <h4 id="loss">Loss: </h4>
+                            <br>
+                            <h4 id="key">Encryption Key: </h4>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -489,6 +498,26 @@
               if (xhr.readyState === 4 && xhr.status === 200) {
                 // Parse the JSON response
                 var response = JSON.parse(xhr.responseText);
+                //get the object with the id ori from html
+                var ori = document.getElementById('ori');
+                var original = response.test;
+                ori.innerHTML = "Original Message: " + original;
+                // enc, loss, key
+                var enc = document.getElementById('enc');
+                var loss = document.getElementById('loss');
+                var key = document.getElementById('key');
+                enc.innerHTML = "Message Encrypted:" + response.alice_message_encrypted;
+                loss.innerHTML = "Loss: " + response.discarded;
+                var keything = response.new_bob_key;
+                //combine the keything array to a string
+                var keything = keything.join("");
+                key.innerHTML = "Encryption Key: " + keything;
+
+                // Original Message: </h4>
+                //         <h4 id="enc">Message Encrypted: </h4>
+                //         <h4 id="loss">Loss: </h4>
+                //         <h4 id="key">Encryption Key:
+                
 
                 // Log the key value
                 console.log(response);
