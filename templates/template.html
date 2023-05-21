@@ -84,9 +84,7 @@
 
               // Generate random string of length 7
               const randomString = getRandomString(7);
-
-              {#// Change word to random string#}
-              {#element.innerHTML = randomString;#}
+              {element.innerHTML = randomString;}
                   element.innerHTML = randomString;
 
               // Revert back to original word after 1 second
@@ -94,8 +92,7 @@
                 element.innerHTML = originalWord;
               }, 300);
 
-              {#// Change word to random string#}
-              {#element.innerHTML = randomString;#}
+              {element.innerHTML = randomString;}
                   element.innerHTML = getRandomString(7);
 
               // Revert back to original word after 1 second
@@ -115,7 +112,7 @@
                         <h4><b>How its Done</b></h4>
                         <div class="line-dec"></div>
                         <p>Using Multi Layer Perceptron (MLP) and Random Tree Classifier machine learning models, we were able to predict the
-                        occurrence of wildfires across the United States. Find the data used for training and testing <b><a target="_blank" href="https://github.com/ouladsayadyounes/WildFires">here</a>!</b></p>
+                        occurrence of wildfires across the United States. Find the data used for training and testing <b><a target="_blank" href="../static/pdf/Quantum_Key_BB84_Protocol.pdf">here</a>!</b></p>
                         <ul>
                             <li>-  Approximately ~90% accuracy</li>
                             <li>-  Low request latency</li>
