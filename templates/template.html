@@ -28,7 +28,7 @@
             <li class="nav-item"><a class="nav-link" href="#home"><span>Intro</span></a></li>
             <li class="nav-item"><a class="nav-link" href="#encryption"><span>The Encryption Process</span></a></li>
             <li class="nav-item"><a class="nav-link" href="#encrypt"><span>Encryption Use Case Sample</span></a></li>
-            <li class="nav-item"><a class="nav-link" href="#data"><span>Data</span></a></li>
+{#            <li class="nav-item"><a class="nav-link" href="#data"><span>Data</span></a></li>#}
             <li class="nav-item"><a class="nav-link" href="#use_cases"><span>Potential Use Cases</span></a></li>
         </ul>
     </div>
@@ -235,38 +235,38 @@
         </div>
     </div>
 
-    <div class="tabs-content" id="data">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-8 mx-auto">
-                    <div class="wrapper">
-                    <section id="first-tab-group" class="tabgroup">
-                      <div id="tab1">
-                          <p><img src="{% static 'img/ndvi.png' %}" alt="" style="opacity: .75;" height="250px"><br>
-                          It can be seen that the NDVI values for training range from 0 to 1 and are normalized. This normalization enables fair comparison between different datasets and prevents the influence of extreme values, simplifying the training process by making the input data consistent and easier to work with.
-                          </p>
-                      </div>
-                      <div id="tab2">
-                          <p><img src="{% static 'img/lst.png' %}" alt=""  style="opacity: .75;" height="250px"><br>LST stands for Land Surface Temperature. Our LST values for training range from 12000 to 16000 and are normalized, which means that the data is standardized to a common scale, making it easier for machine learning models to learn from and make accurate wildfire predictions.</p>
-                      </div>
-                      <div id="tab3">
-                          <p><img src="{% static 'img/ta.png' %}" alt=""  style="opacity: .75;" height="250px"><br>Our Thermal Anomaly (TA) values for training range from 3 to 5 and are right skewed, likely due to the fact that most areas do not have thermal anomalies, and this distribution may affect the performance of our model by overemphasizing the importance of areas with thermal anomalies and underemphasizing areas without them. Proper handling of this skewness is necessary for a balanced and accurate wildfire prediction model.</p>
-                      </div>
-                      <div id="tab4">
-                          <p><img src="{% static 'img/model_accuracy.png' %}" alt=""  style="opacity: .75;" height="250px"><br>Based on the graph above, it is apparent that the random forest classification model achieves the highest accuracy with 90% training data. Therefore, we can conclude that using 90% of the available training data is the best option for this model.</p>
-                      </div>
-                    </section>
-                    <ul class="tabs clearfix" data-tabgroup="first-tab-group">
-                      <li><a href="#tab1" class="active">NDVI</a></li>
-                      <li><a href="#tab2">LST</a></li>
-                      <li><a href="#tab3">TA</a></li>
-                      <li><a href="#tab4">Model Accuracy</a></li>
-                    </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+{#    <div class="tabs-content" id="data">#}
+{#        <div class="container">#}
+{#            <div class="row">#}
+{#                <div class="col-md-8 mx-auto">#}
+{#                    <div class="wrapper">#}
+{#                    <section id="first-tab-group" class="tabgroup">#}
+{#                      <div id="tab1">#}
+{#                          <p><img src="{% static 'img/ndvi.png' %}" alt="" style="opacity: .75;" height="250px"><br>#}
+{#                          It can be seen that the NDVI values for training range from 0 to 1 and are normalized. This normalization enables fair comparison between different datasets and prevents the influence of extreme values, simplifying the training process by making the input data consistent and easier to work with.#}
+{#                          </p>#}
+{#                      </div>#}
+{#                      <div id="tab2">#}
+{#                          <p><img src="{% static 'img/lst.png' %}" alt=""  style="opacity: .75;" height="250px"><br>LST stands for Land Surface Temperature. Our LST values for training range from 12000 to 16000 and are normalized, which means that the data is standardized to a common scale, making it easier for machine learning models to learn from and make accurate wildfire predictions.</p>#}
+{#                      </div>#}
+{#                      <div id="tab3">#}
+{#                          <p><img src="{% static 'img/ta.png' %}" alt=""  style="opacity: .75;" height="250px"><br>Our Thermal Anomaly (TA) values for training range from 3 to 5 and are right skewed, likely due to the fact that most areas do not have thermal anomalies, and this distribution may affect the performance of our model by overemphasizing the importance of areas with thermal anomalies and underemphasizing areas without them. Proper handling of this skewness is necessary for a balanced and accurate wildfire prediction model.</p>#}
+{#                      </div>#}
+{#                      <div id="tab4">#}
+{#                          <p><img src="{% static 'img/model_accuracy.png' %}" alt=""  style="opacity: .75;" height="250px"><br>Based on the graph above, it is apparent that the random forest classification model achieves the highest accuracy with 90% training data. Therefore, we can conclude that using 90% of the available training data is the best option for this model.</p>#}
+{#                      </div>#}
+{#                    </section>#}
+{#                    <ul class="tabs clearfix" data-tabgroup="first-tab-group">#}
+{#                      <li><a href="#tab1" class="active">NDVI</a></li>#}
+{#                      <li><a href="#tab2">LST</a></li>#}
+{#                      <li><a href="#tab3">TA</a></li>#}
+{#                      <li><a href="#tab4">Model Accuracy</a></li>#}
+{#                    </ul>#}
+{#                    </div>#}
+{#                </div>#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
 
     <div class="parallax-content projects-content" id="use_cases">
         <div class="container">
