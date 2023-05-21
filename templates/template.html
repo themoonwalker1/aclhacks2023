@@ -111,13 +111,12 @@
                     <div class="left-text">
                         <h4><b>How its Done</b></h4>
                         <div class="line-dec"></div>
-                        <p>Using Multi Layer Perceptron (MLP) and Random Tree Classifier machine learning models, we were able to predict the
-                        occurrence of wildfires across the United States. Find the data used for training and testing <b><a target="_blank" href="../static/pdf/Quantum_Key_BB84_Protocol.pdf">here</a>!</b></p>
+                        <p>Utilizing Quantum Key Distribution (QKD), we harnessed the power of quantum encryption to strengthen the security of various industries through our accessible API. For more technical information, go to the research paper <b><a target="_blank" href="../static/pdf/Quantum_Key_BB84_Protocol.pdf">here</a>!</b></p>
                         <ul>
-                            <li>-  Approximately ~90% accuracy</li>
-                            <li>-  Low request latency</li>
-                            <li>-  Very low False Negative rate</li>
-                            <li>-  Integrated map feature Coming Soon!</li>
+                            <li>-  100% Successful Encryption</li>
+                            <li>-  Enhanced Security Against Eavesdroppers</li>
+                            <li>-  Unparalleled Encryption Strength</li>
+                            <li>-  Efficient Performance!</li>
                         </ul>
                         <div class="primary-button">
                             <a href="#encrypt">Go to Encryptor</a>
@@ -184,31 +183,31 @@
                             <form id="contact" action="" method="post">
                                 <div class="row">
                                     <div class="thingmabob">
-                                        <h4 style="color: whitesmoke"><b>Predict Wildfires At Any US Location!</b></h4>
+                                        <h4 style="color: whitesmoke; padding-top: 20%; padding-bottom: 5%"><b> Test the Doubloon Defense API! </b></h4>
                                     </div>
                                     <div class="col-md-12" style="padding-bottom: 5px">
                                       <fieldset style="padding-bottom: 5px">
                                         {% csrf_token %}
 <!--                                        <label for="autocomplete">Enter your address:</label>-->
-                                        <input id="autocomplete" class="form-control" type="text" placeholder="Enter your address:" onchange="setthing()"/>
+                                        <input id="autocomplete" class="form-control" type="text" placeholder="Enter your message to be encrypted:"/>
                                       </fieldset>
                                     </div>
-                                    <div class="col-md-12 or" style="padding-bottom: 5px">
-                                      <fieldset style="padding-bottom: 5px">
-                                        <h1><b>OR</b></h1>
-                                      </fieldset>
-                                    </div>
-                                    <div class="col-md-12">
+{#                                    <div class="col-md-12 or" style="padding-bottom: 5px">#}
+{#                                      <fieldset style="padding-bottom: 5px">#}
+{#                                        <h1><b>OR</b></h1>#}
+{#                                      </fieldset>#}
+{#                                    </div>#}
+{#                                    <div class="col-md-12">#}
+{#                                      <fieldset>#}
+{#<!--                                        <label for="Latitude">Latitude:</label>-->#}
+{#                                        <input id="Latitude" class="form-control" type="text" placeholder="Enter your encrypted message:"/>#}
+{#<!--                                        <label for="Longitude">Longitude:</label>-->#}
+{#                                        <input id="Longitude" class="form-control" type="text" placeholder="Enter your key:"/>#}
+{#                                      </fieldset>#}
+{#                                    </div>#}
+                                    <div class="col-md-12" style="padding-bottom: 20%">
                                       <fieldset>
-<!--                                        <label for="Latitude">Latitude:</label>-->
-                                        <input id="Latitude" class="form-control" type="text" placeholder="Latitude:" onchange="setthing()"/>
-<!--                                        <label for="Longitude">Longitude:</label>-->
-                                        <input id="Longitude" class="form-control" type="text" placeholder="Longitude:" onchange="setthing()"/>
-                                      </fieldset>
-                                    </div>
-                                    <div class="col-md-12">
-                                      <fieldset>
-                                        <button class="btn btn-primary" type="button" onclick="find()" id="but">Predict Now</button>
+                                        <button class="btn btn-primary" type="button" onclick="onSubmit()" id="but">Predict Now</button>
                                       </fieldset>
                                     </div>
                                 </div>
@@ -420,8 +419,84 @@
             }
         });
         }, options);
+
+
     
         observer.observe(counter);
+
+        function onSubmit() {
+            // Get the input field value
+            var message = document.getElementById('autocomplete').value;
+
+            if (message !== "") {
+                // Create the URL with the message parameter
+                var url = '/api/encrypt?message=' + encodeURIComponent(message);
+
+                // Send the AJAX request
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', url, true);
+                xhr.onreadystatechange = function() {
+                  if (xhr.readyState === 4 && xhr.status === 200) {
+                    // Parse the JSON response
+                    var response = JSON.parse(xhr.responseText);
+
+                    // Log the key value
+                    console.log(response.key);
+
+                    decrypt(response.key);
+                  }
+                };
+                xhr.send();
+            } else if (document.getElementById('Latitude').value !== "") {
+                message = document.getElementById('Latitude').value;
+                keything = document.getElementById('Longitude').value;
+                console.log(decryptString(message, keything));
+            }
+
+
+        }
+
+
+
+        function decryptString(encryptedString, key) {
+          // Convert the encrypted string to binary format
+          var encryptedBin = Array.from(encryptedString, c => ('0000000' + c.charCodeAt(0).toString(2)).slice(-8)).join('');
+
+          // Repeat or pad the key to match the length of the encrypted binary
+          var keyBin = (key.repeat(Math.floor(encryptedBin.length / key.length)) + key.slice(0, encryptedBin.length % key.length));
+
+          // Perform bitwise XOR between the encrypted string and key
+          var decryptedBin = Array.from(encryptedBin, (c, i) => (parseInt(c) ^ parseInt(keyBin[i]))).join('');
+
+          // Convert the decrypted binary back to string format
+          var decryptedString = '';
+          for (var i = 0; i < decryptedBin.length; i += 8) {
+            decryptedString += String.fromCharCode(parseInt(decryptedBin.slice(i, i + 8), 2));
+          }
+
+          return decryptedString;
+        }
+
+        function decrypt(key) {
+
+            // Create the URL with the message parameter
+            var url = '/api/decrypt/' + encodeURIComponent(key);
+
+            // Send the AJAX request
+            var xhr = new XMLHttpRequest();
+            xhr.open('GET', url, true);
+            xhr.onreadystatechange = function() {
+              if (xhr.readyState === 4 && xhr.status === 200) {
+                // Parse the JSON response
+                var response = JSON.parse(xhr.responseText);
+
+                // Log the key value
+                console.log(response);
+              }
+            };
+            xhr.send();
+        }
+
     
     </script>
 

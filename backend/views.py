@@ -185,7 +185,7 @@ def decrypt(request, hex_code):
 
     print(ak)
     print(bk)
-    return JsonResponse({'alice_message_encrypted': encrypt_string(qm.message, ak), 'new_bob_key': new_bob_key, 'success': acc / len(new_alice_key) > 0.9 }) #, "test": decrypt_string(encrypt_string(qm.message, bk), bk)})
+    return JsonResponse({'alice_message_encrypted': encrypt_string(qm.message, ak), 'new_bob_key': new_bob_key, 'success': acc / len(new_alice_key) > 0.9 , "test": decrypt_string(encrypt_string(qm.message, bk), bk), "similarity" : acc / len(new_alice_key), "discarded" : len(keep) / n })
 
 def encrypt_string(string, key):
     # Convert the string to binary format
