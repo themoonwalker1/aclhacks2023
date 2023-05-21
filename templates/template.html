@@ -56,8 +56,53 @@
             },
             onComplete: function() {
                 // $('.typed-cursor').hide();
+                setInterval(changeAndRevertWord, 4000);
             }
         });
+        function nothing(){
+            return;
+        }
+        function getRandomString(length) {
+          let result = '';
+          const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+          const charactersLength = characters.length;
+
+          for (let i = 0; i < length; i++) {
+            result += characters.charAt(Math.floor(Math.random() * charactersLength));
+          }
+
+          return result;
+        }
+
+        function changeAndRevertWord() {
+          const xpathExpression = '//*[@id="home"]/div/div/span[1]/em';
+          const element = document.evaluate(xpathExpression, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+
+          if (element) {
+              const originalWord = element.innerHTML;
+
+              // Generate random string of length 7
+              const randomString = getRandomString(7);
+
+              {#// Change word to random string#}
+              {#element.innerHTML = randomString;#}
+                  element.innerHTML = randomString;
+
+              // Revert back to original word after 1 second
+              setTimeout(() => {
+                element.innerHTML = originalWord;
+              }, 300);
+
+              {#// Change word to random string#}
+              {#element.innerHTML = randomString;#}
+                  element.innerHTML = getRandomString(7);
+
+              // Revert back to original word after 1 second
+              setTimeout(() => {
+                element.innerHTML = originalWord;
+              }, 300);
+          }
+        }
     </script>
 
 
