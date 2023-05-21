@@ -133,10 +133,10 @@
                                 <h4>Approximately</h4>
                                 <div class="line-dec"></div>
                                 <br>
-                                <b><p class = "number-counter" style="font-size:70px;">70,000</p></b>
+                                <b><p class = "number-counter" style="font-size:70px;">2,200</p></b>
                                 <br>
                                 <div class="line-dec"></div>
-                                <h4>Wildfires Per Year</h4>
+                                <h4>Cyberattacks Per Day</h4>
                             </div>
                         </div>
                         <div class="col-md-6">
@@ -163,13 +163,13 @@
                         </div>
                         <div class="col-md-6">
                             <div class="service-item">
-                                <h4>Humans Cause</h4>
+                                <h4>Cyberattacks Happen Every</h4>
                                 <div class="line-dec"></div>
                                 <br>
-                                <b><p style="font-size:70px;">85%</p></b>
+                                <b><p style="font-size:70px;">39</p></b>
                                 <br>
                                 <div class="line-dec"></div>
-                                <h4>Of All Wildfires</h4>
+                                <h4>Seconds</h4>
                             </div>
                         </div>
                     </div>
@@ -223,14 +223,6 @@
                     <div class="thingmabob">
                         <h4><b id="predicty" style="color: #0f8fff">Result Appears Here</b></h4>
                     </div>
-                    <!-- How to change your own map point
-                           1. Go to Google Maps
-                           2. Click on your location point
-                           3. Click "Share" and choose "Embed map" tab
-                           4. Copy only URL and paste it within the src="" field below
-                    -->
-
-                        <img id="image" src="https://maps.googleapis.com/maps/api/staticmap?center=37.09024,-95.712891&zoom=4&size=640x467&maptype=satellite&key=API_KEY_HERE" height="382px">
                     </div>
                 </div>
             </div>
@@ -395,6 +387,44 @@
             } // End if
           });
         });
+    </script>
+    <script>
+        var counter = document.querySelector('.number-counter');
+        var start = 0;
+        var end = 2200;
+        var duration = 2000;
+        var range = end - start;
+        var current = start;
+        var increment = 9;
+        var step = Math.abs(Math.floor(duration / range));
+        var counterExecuted = false;
+    
+        var options = {
+        root: null,
+        rootMargin: '0px',
+        threshold: 0
+        }
+    
+        var observer = new IntersectionObserver(function(entries, observer) {
+        entries.forEach(entry => {
+            if (entry.isIntersecting && !counterExecuted) {
+            counterExecuted = true;
+            var timer = setInterval(function() {
+                current += increment;
+                counter.innerHTML = current.toLocaleString();
+                if (current >= end) {
+                counter.innerHTML = end.toLocaleString();
+                clearInterval(timer);
+                }
+            }, step);
+            counter.style.opacity = 1;
+            counter.style.transform = 'translateY(0)';
+            }
+        });
+        }, options);
+    
+        observer.observe(counter);
+    
     </script>
 
 </body>
